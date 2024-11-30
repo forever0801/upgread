@@ -8,6 +8,7 @@ import ChallengeJoin from '@/components/challenge/ChallengeJoin.vue';
 import ChallengeHistory from '@/components/challenge/ChallengeHistory.vue';
 import BookRecommendView from '@/views/BookRecommendView.vue';
 import SettingView from '@/views/SettingView.vue';
+import ChallengeDetail from '@/components/challenge/ChallengeDetail.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -51,6 +52,11 @@ const router = createRouter({
           path: 'history',
           name: 'challengeHistory',
           component: ChallengeHistory,
+        },
+        {
+          path: ':id',
+          name: 'challengeDetail',
+          component: ChallengeDetail,
         }],
       redirect: 'challenge/all',
     },
