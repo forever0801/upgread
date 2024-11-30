@@ -1,22 +1,22 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Upgread</a>
+      <router-link :to="{ name: 'home' }" class="navbar-brand">Upgread</router-link>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">로그인</a>
+          <router-link :to="{ name: 'login'}" class="nav-link active">로그인</router-link>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">회원가입</a>
+          <router-link :to="{ name: 'join' }" class="nav-link active">회원가입</router-link>
         </li>
       </ul>
     </div>
   </nav>
-  <nav class="nav nav-pills nav-justified">
-    <a class="nav-link active" aria-current="page" href="#">책추천</a>
-    <a class="nav-link" href="#">챌린지</a>
-    <a class="nav-link" href="#">설정</a>
-  </nav>
+  <ul class="nav nav-tabs nav-justified px-3 bg-light">
+    <router-link :to="{ name: 'home' }" class="nav-link active">책추천</router-link>
+    <router-link :to="{ name: 'challenge' }" class="nav-link">챌린지</router-link>
+    <router-link :to="{ nme: 'home' }" class="nav-link" href="#">설정</router-link>
+  </ul>
 </template>
 
 <script setup>
