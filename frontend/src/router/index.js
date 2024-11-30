@@ -9,6 +9,9 @@ import ChallengeHistory from '@/components/challenge/ChallengeHistory.vue';
 import BookRecommendView from '@/views/BookRecommendView.vue';
 import SettingView from '@/views/SettingView.vue';
 import ChallengeDetail from '@/components/challenge/ChallengeDetail.vue';
+import BookRecommendGenre from '@/components/bookRecommend/BookRecommendGenre.vue';
+import BookRecommendGrade from '@/components/bookRecommend/BookRecommendGrade.vue';
+import BookRecommendDifficulty from '@/components/bookRecommend/BookRecommendDifficulty.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -30,13 +33,32 @@ const router = createRouter({
     },
     {
       path: '/book-recommend',
-      name: 'book-recommend',
+      name: 'bookRecommend',
       component: BookRecommendView,
+      redirect: 'book-recommend/genre',
+      children: [
+        {
+          path: 'genre',
+          name: 'bookRecommendGenre',
+          component: BookRecommendGenre,
+        },
+        {
+          path: 'grade',
+          name: 'bookRecommendGrade',
+          component: BookRecommendGrade,
+        },
+        {
+          path: 'difficulty',
+          name: 'bookRecommendDifficulty',
+          component: BookRecommendDifficulty,
+        }
+      ]
     },
     {
       path: '/challenge',
       name: 'challenge',
       component: ChallengeView,
+      redirect: 'challenge/all',
       children: [
         {
           path: 'all',
@@ -58,7 +80,6 @@ const router = createRouter({
           name: 'challengeDetail',
           component: ChallengeDetail,
         }],
-      redirect: 'challenge/all',
     },
     {
       path: '/setting',

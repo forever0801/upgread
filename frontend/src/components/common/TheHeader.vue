@@ -15,7 +15,7 @@
     </div>
   </nav>
   <ul class="nav nav-tabs nav-justified px-3 bg-light">
-    <router-link :to="{ name: 'book-recommend' }" class="nav-link" :class="{ active: route.name === 'book-recommend' }">책추천</router-link>
+    <router-link :to="{ name: 'bookRecommend' }" class="nav-link" :class="{ active: route.name?.startsWith('bookRecommend') }">책추천</router-link>
     <router-link :to="{ name: 'challenge' }" class="nav-link" :class="{ active: route.name?.startsWith('challenge') }">챌린지</router-link>
     <router-link :to="{ name: 'setting' }" class="nav-link" :class="{ active: route.name === 'setting' }">설정</router-link>
   </ul>
