@@ -1,4 +1,7 @@
 package com.upgread.upgread.model.dao;
 
-public class UserDao {
+import com.upgread.upgread.model.dto.LoginDTO;
+
+public interface UserDao {
+    Integer selectUserId(LoginDTO user);
 }
