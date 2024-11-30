@@ -15,14 +15,20 @@
     </div>
   </nav>
   <ul class="nav nav-tabs nav-justified px-3 bg-light">
-    <router-link :to="{ name: 'home' }" class="nav-link active">책추천</router-link>
-    <router-link :to="{ name: 'challenge' }" class="nav-link">챌린지</router-link>
-    <router-link :to="{ name: 'home' }" class="nav-link" href="#">설정</router-link>
+    <router-link :to="{ name: 'book-recommend' }" class="nav-link" :class="{ active: route.name === 'book-recommend' }">책추천</router-link>
+    <router-link :to="{ name: 'challenge' }" class="nav-link" :class="{ active: route.name?.startsWith('challenge') }">챌린지</router-link>
+    <router-link :to="{ name: 'setting' }" class="nav-link" :class="{ active: route.name === 'setting' }">설정</router-link>
   </ul>
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
+import { onMounted } from 'vue';
 
+const route = useRoute()
+onMounted(() => {
+  console.log(route.name)
+})
 </script>
 
 <style scoped>
