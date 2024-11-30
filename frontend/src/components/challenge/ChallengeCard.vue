@@ -1,5 +1,5 @@
 <template>
-  <div class="card my-2">
+  <router-link :to="{ name: 'challengeDetail', params: { id: 1 } }" class="card my-2" style="text-decoration: none">
     <div class="card-body">
       <h5 class="card-title">2024 독서모임</h5>
       <div class="row">
@@ -13,14 +13,13 @@
 
         </div>
       </div>
-      <a href="#" class="btn btn-primary mt-2">참여하기</a>
+      <button class="btn btn-primary mt-2" @click.stop.prevent="">참여하기</button>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup>
 </script>
 
 <style scoped>
-
 </style>
