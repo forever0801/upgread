@@ -17,7 +17,7 @@
   <ul class="nav nav-tabs nav-justified px-3 bg-light">
     <router-link :to="{ name: 'home' }" class="nav-link active">책추천</router-link>
     <router-link :to="{ name: 'challenge' }" class="nav-link">챌린지</router-link>
-    <router-link :to="{ nme: 'home' }" class="nav-link" href="#">설정</router-link>
+    <router-link :to="{ name: 'home' }" class="nav-link" href="#">설정</router-link>
   </ul>
 </template>
 

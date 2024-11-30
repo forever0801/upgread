@@ -1,5 +1,5 @@
 <template>
-  <div>모든 챌린지가 나와야해</div>
+  <div>챌린지 기록이 나와야해</div>
 </template>
 
 <script setup>
