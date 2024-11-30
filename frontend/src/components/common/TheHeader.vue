@@ -5,11 +5,14 @@
         <img src="@/assets/book-icon.png" alt="" width="32">
         Upgread</router-link>
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li v-if="!userStore.isLoggedIn" class="nav-item">
           <router-link :to="{ name: 'login'}" class="nav-link active">로그인</router-link>
         </li>
-        <li class="nav-item">
+        <li v-if="!userStore.isLoggedIn" class="nav-item">
           <router-link :to="{ name: 'join' }" class="nav-link active">회원가입</router-link>
+        </li>
+        <li v-if="userStore.isLoggedIn" class="nav-item">
+          <button class="nav-link active" @click="handleLogoutClick">로그아웃</button>
         </li>
       </ul>
     </div>
@@ -24,11 +27,32 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
+import { getLogin, postLogout } from '@/api/userApi.js';
+import { useUser } from '@/stores/user.js';
 
 const route = useRoute()
-onMounted(() => {
-  console.log(route.name)
+const userStore = useUser()
+
+const handleLogoutClick = async () => {
+  try {
+    await postLogout()
+    alert("로그아웃 되었습니다")
+  } catch {
+    alert("로그인 상태가 아닙니다")
+  }
+  location.reload()
+}
+
+onMounted(async () => {
+  try {
+    await getLogin()
+    userStore.login()
+  } catch {
+    userStore.logout()
+  }
 })
+
+
 </script>
 
 <style scoped>
