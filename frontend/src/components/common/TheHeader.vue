@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
     <div class="container-fluid">
-      <router-link :to="{ name: 'home' }" class="navbar-brand">Upgread</router-link>
+      <router-link :to="{ name: 'home' }" class="navbar-brand">
+        <img src="@/assets/book-icon.png" alt="" width="32">
+        Upgread</router-link>
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link :to="{ name: 'login'}" class="nav-link active">로그인</router-link>
