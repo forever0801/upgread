@@ -1,6 +1,7 @@
 package com.upgread.upgread.controller;
 
 import com.upgread.upgread.model.dao.UserDao;
+import com.upgread.upgread.model.dto.JoinDTO;
 import com.upgread.upgread.model.dto.LoginDTO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -53,5 +54,16 @@ public class UserController {
 
         session.invalidate();
         return ResponseEntity.status(HttpStatus.OK).body("로그아웃 되었습니다");
+    }
+
+    @PostMapping("/join")
+    public ResponseEntity<?> join(@RequestBody JoinDTO user) {
+        boolean success = userDao.insertUser(user) == 1;
+
+        if (success) {
+            return ResponseEntity.status(HttpStatus.OK).body("회원가입에 성공했습니다");
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("회원가입에 실패했습니다");
     }
 }
