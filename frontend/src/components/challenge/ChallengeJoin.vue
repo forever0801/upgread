@@ -1,9 +1,14 @@
 <template>
-  <div>참여중인 챌린지가 나와야해</div>
+  <div>
+    <challenge-card></challenge-card>
+    <challenge-card></challenge-card>
+    <challenge-card></challenge-card>
+  </div>
 </template>
 
 <script setup>
 
+import ChallengeCard from '@/components/challenge/ChallengeCard.vue';
 </script>
 
 <style scoped>
