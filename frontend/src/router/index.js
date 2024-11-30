@@ -35,7 +35,7 @@ const router = createRouter({
       path: '/book-recommend',
       name: 'bookRecommend',
       component: BookRecommendView,
-      redirect: 'book-recommend/genre',
+      redirect: '/book-recommend/genre',
       children: [
         {
           path: 'genre',
@@ -58,7 +58,7 @@ const router = createRouter({
       path: '/challenge',
       name: 'challenge',
       component: ChallengeView,
-      redirect: 'challenge/all',
+      redirect: '/challenge/all',
       children: [
         {
           path: 'all',
