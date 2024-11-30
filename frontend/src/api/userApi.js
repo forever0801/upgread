@@ -26,3 +26,19 @@ export const postLogout = async () => {
     throw new Error(e.message)
   }
 }
+
+export const postJoin = async ({ email, password, username, birth, gender, city }) => {
+  try {
+    const response = await api.post('/user/join', {
+      email,
+      password,
+      username,
+      birth,
+      gender,
+      city
+    })
+    return response.data
+  } catch (e) {
+    throw new Error(e.message)
+  }
+}

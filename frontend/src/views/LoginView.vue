@@ -25,12 +25,8 @@ const formData = ref({
 })
 
 const handleLoginClick = async () => {
-  const { email, password } = formData.value;
   try {
-    await postLogin({
-      email,
-      password
-    })
+    await postLogin(formData.value)
     alert("로그인 되었습니다")
     await router.push({ name: 'home' })
     location.reload()
