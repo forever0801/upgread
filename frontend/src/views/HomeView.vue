@@ -1,6 +1,7 @@
 <template>
   <div class="text-center fs-1 py-5">
-    책마니읽자얘두라
+    <img src="/assets/hompage.png" alt="UpgRead Logo" class="img-fluid" />
+    <h1>Welcome to UpgRead</h1>
   </div>
 </template>
 
