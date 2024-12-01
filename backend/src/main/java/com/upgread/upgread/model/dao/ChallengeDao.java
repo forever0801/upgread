@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ChallengeDao {
     List<Challenge> selectAll(int userId);
+    int insertUserChallenge(int challengeId, int userId);
 }

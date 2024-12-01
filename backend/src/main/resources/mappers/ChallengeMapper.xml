@@ -22,4 +22,8 @@
         GROUP BY c.challenge_id, c.created_at
         ORDER BY c.created_at DESC;
     </select>
+    <insert id="insertUserChallenge">
+        INSERT INTO UserChallenges (user_id, challenge_id, start_date)
+        VALUES (#{userId}, #{challengeId}, CURDATE());
+    </insert>
 </mapper>

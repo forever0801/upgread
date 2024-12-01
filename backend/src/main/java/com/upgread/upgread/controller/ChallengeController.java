@@ -6,9 +6,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +32,22 @@ public class ChallengeController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(challenges);
+    }
+
+    @PostMapping("/join/{challengeId}")
+    public ResponseEntity<?> challengeJoin(@PathVariable int challengeId, HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 상태가 아닙니다");
+        }
+
+        boolean success = challengeDao.insertUserChallenge(challengeId, userId) == 1;
+
+        if (success) {
+            return ResponseEntity.status(HttpStatus.OK).body("챌린지에 참여했습니다");
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("챌린지 참여에 실패했습니다");
     }
 }
