@@ -16,8 +16,8 @@
 
           </div>
         </div>
-        <button v-if="challenge.participationStatus === 'not_joined'" class="btn btn-primary mt-2" @click.stop.prevent="">참여하기</button>
-        <button v-else class="btn btn-primary mt-2" @click.stop.prevent="">탈퇴하기</button>
+        <button v-if="challenge.participationStatus === 'not_joined'" class="btn btn-primary mt-2" @click.stop.prevent="handleJoinClick(challenge.challengeId)">참여하기</button>
+        <button v-else class="btn btn-warning mt-2" @click.stop.prevent="">탈퇴하기</button>
       </div>
     </router-link>
     <div class="modal fade" id="makeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,12 +68,21 @@
 </template>
 
 <script setup>
-import ChallengeCard from '@/components/challenge/ChallengeCard.vue';
 import { onMounted, ref } from 'vue';
-import { getAllChallenges } from '@/api/challengeApi.js';
+import { getAllChallenges, postJoinChallenge } from '@/api/challengeApi.js';
 import router from '@/router/index.js';
 
 const challenges = ref([])
+
+const handleJoinClick = async (challengeId) => {
+  try {
+    await postJoinChallenge(challengeId)
+    challenges.value = await getAllChallenges()
+    alert("챌린지에 참여했습니다")
+  } catch {
+    alert("챌린지 참여에 실패했습니다")
+  }
+}
 
 onMounted(async () => {
   try {
