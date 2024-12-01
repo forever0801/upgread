@@ -2,9 +2,24 @@
   <div>
     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#makeModal">챌린지 만들기
     </button>
-    <challenge-card></challenge-card>
-    <challenge-card></challenge-card>
-    <challenge-card></challenge-card>
+    <router-link v-for="challenge in challenges" :to="{ name: 'challengeDetail', params: { id: challenge.challengeId }}" class="card my-2" style="text-decoration: none">
+      <div class="card-body">
+        <h5 class="card-title">{{ challenge.challengeName }}</h5>
+        <div class="row">
+          <div class="col-8">
+            <h6 class="card-subtitle mb-2 text-muted">{{ challenge.participantCount }}명 참여중</h6>
+            <p class="card-text">{{ challenge.description }}</p>
+          </div>
+          <div class="col-4">
+            <h6 class="card-subtitle mb-2 text-muted">기간 : {{ challenge.duration }}일</h6>
+            <h6 class="card-subtitle mb-2 text-muted">목표 : {{ challenge.goal }}{{ challenge.type === 'pages' ? "페이지" : "권" }}</h6>
+
+          </div>
+        </div>
+        <button v-if="challenge.participationStatus === 'not_joined'" class="btn btn-primary mt-2" @click.stop.prevent="">참여하기</button>
+        <button v-else class="btn btn-primary mt-2" @click.stop.prevent="">탈퇴하기</button>
+      </div>
+    </router-link>
     <div class="modal fade" id="makeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -54,7 +69,20 @@
 
 <script setup>
 import ChallengeCard from '@/components/challenge/ChallengeCard.vue';
+import { onMounted, ref } from 'vue';
+import { getAllChallenges } from '@/api/challengeApi.js';
+import router from '@/router/index.js';
 
+const challenges = ref([])
+
+onMounted(async () => {
+  try {
+    challenges.value = await getAllChallenges()
+  } catch (e) {
+    alert(e.message)
+    await router.push({ name: 'home' })
+  }
+})
 </script>
 
 <style scoped>
